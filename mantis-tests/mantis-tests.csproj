@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <RootNamespace>mantis_tests</RootNamespace>
+
+        <IsPackable>false</IsPackable>
+
+        <LangVersion>9</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentFTP" Version="34.0.0" />
+        <PackageReference Include="NUnit" Version="3.12.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+        <PackageReference Include="Selenium.Support" Version="4.0.0-beta2" />
+        <PackageReference Include="Selenium.WebDriver" Version="4.0.0-beta2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="config_inc.php">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Include="App.config" />
+      <None Include="Service References\Mantis\Mantis.svcmap">
+        <Generator>WCF Proxy Generator</Generator>
+        <LastGenOutput>Mantis.cs</LastGenOutput>
+      </None>
+      <None Include="Service References\Mantis\Mantis.webref" />
+      <None Include="Service References\Mantis\mantisconnect.wsdl" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <WCFMetadata Include="Service References" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <WCFMetadataStorage Include="Service References\Mantis" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="Service References\Mantis\Mantis.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>Mantis.svcmap</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="System.ServiceModel" />
+    </ItemGroup>
+
+</Project>
